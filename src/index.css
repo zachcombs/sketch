@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Handwriting_1';
+  src: local('Handwriting_1'), url(./fonts/Handwriting_1.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Handwriting_2';
+  src: local('Handwriting_2'), url(./fonts/Handwriting_2.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Handwriting_3';
+  src: local('Handwriting_3'), url(./fonts/Handwriting_3.otf) format('opentype');
+}
+
+body {
+  margin: 0;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
