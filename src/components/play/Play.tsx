@@ -2,6 +2,7 @@ import { Box, Menu, MenuItem } from '@mui/material';
 import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
 import { useState } from 'react';
 import SketchButton from '../SketchButton/SketchButton';
+import { fontifyWord } from '../../utils/Fontify';
 
 const difficultyOptions = ['Easy', 'Medium', 'Hard'];
 
@@ -22,6 +23,9 @@ function Play() {
     return (
         <Box>
             <Box p={1}>
+                <SketchButton text='Play' fontSize={32} />
+            </Box>
+            <Box p={1}>
                 <SketchButton
                     text={difficulty}
                     fontSize={32}
@@ -32,14 +36,18 @@ function Play() {
                     anchorEl={anchorEl}
                     open={open}
                     onClose={() => handleClose(0)}
+                    sx={{ color: 'black', minWidth: 200 }}
                 >
-                    <MenuItem onClick={() => handleClose(0)}>Easy</MenuItem>
-                    <MenuItem onClick={() => handleClose(1)}>Medium</MenuItem>
-                    <MenuItem onClick={() => handleClose(2)}>Hard</MenuItem>
+                    <MenuItem divider onClick={() => handleClose(0)}>
+                        {fontifyWord('Easy')}
+                    </MenuItem>
+                    <MenuItem divider onClick={() => handleClose(1)}>
+                        {fontifyWord('Medium')}
+                    </MenuItem>
+                    <MenuItem onClick={() => handleClose(2)}>
+                        {fontifyWord('Hard')}
+                    </MenuItem>
                 </Menu>
-            </Box>
-            <Box p={1}>
-                <SketchButton text='Play' fontSize={32} />
             </Box>
         </Box>
     );

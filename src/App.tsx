@@ -9,6 +9,32 @@ function App() {
                 main: '#FFD139',
             },
         },
+        components: {
+            MuiMenu: {
+                styleOverrides: {
+                    list: {
+                        '&[role="menu"]': {
+                            backgroundColor: '#FFD139',
+                        },
+                    },
+                },
+            },
+            MuiMenuItem: {
+                styleOverrides: {
+                    root: {
+                        justifyContent: 'center',
+                        minWidth: 200,
+                    },
+                },
+            },
+            MuiPaper: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: 0,
+                    },
+                },
+            },
+        },
     });
 
     return (

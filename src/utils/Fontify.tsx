@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-export const fontifyWord = (word: string, fontSize: number) => {
+export const fontifyWord = (word: string, fontSize: number = 32) => {
     const characters = [...word];
 
     const fontAppliedTitle = characters.map((char) => {
