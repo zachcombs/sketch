@@ -23,6 +23,7 @@ export default function SketchButton({
                 sx={{
                     backgroundColor: theme.palette.primary.main,
                     borderRadius: 0,
+                    width: 200,
                 }}
                 onClick={onClick}
                 endIcon={endIcon}
