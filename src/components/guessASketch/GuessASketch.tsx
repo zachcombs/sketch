@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import Header from '../header/Header';
-import PlayButton from '../play/Play';
+import Header from '../Header/Header';
+import PlayButton from '../Play/Play';
 import AnswerTextField from '../AnswerTextField/AnswerTextField';
 
 function GuessASketch() {
