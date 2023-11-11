@@ -1,8 +1,17 @@
 import { useState, useEffect } from 'react';
 
+type Drawing = {
+    word: string;
+    countrycode: string;
+    timestamp: string;
+    recognized: string;
+    key_id: string;
+    drawing: Array<Array<Array<number>>>;
+};
+
 export const useGetDrawing = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [drawingData, setDrawingData] = useState(null);
+    const [drawingData, setDrawingData] = useState<Drawing>();
     const [serverError, setServerError] = useState(null);
 
     useEffect(() => {

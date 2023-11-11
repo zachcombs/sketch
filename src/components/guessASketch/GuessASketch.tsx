@@ -2,11 +2,9 @@ import { Box } from '@mui/material';
 import Header from '../Header/Header';
 import PlayButton from '../Play/Play';
 import AnswerTextField from '../AnswerTextField/AnswerTextField';
-import { useGetDrawing } from '../../utils/useGetDrawing';
+import Canvas from '../Canvas/Canvas';
 
 function GuessASketch() {
-    const drawingData = useGetDrawing();
-
     return (
         <Box>
             <Header />
@@ -15,7 +13,7 @@ function GuessASketch() {
             </Box>
             <Box display='flex' justifyContent='center'>
                 <AnswerTextField />
-                {JSON.stringify(drawingData.drawingData)}
+                <Canvas />
             </Box>
         </Box>
     );
