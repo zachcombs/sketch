@@ -1,9 +1,29 @@
 import { Box, TextField } from '@mui/material';
+import { Dispatch, useEffect, useState } from 'react';
 
-function AnswerTextField() {
+type AnswerTextFieldProps = {
+    correctAnswer: string;
+    setHasCorrectlyAnswered: Dispatch<boolean>;
+};
+
+function AnswerTextField({
+    correctAnswer,
+    setHasCorrectlyAnswered,
+}: AnswerTextFieldProps) {
+    const [currentGuess, setCurrentGuess] = useState('');
+
+    useEffect(() => {
+        if (currentGuess === correctAnswer) {
+            setHasCorrectlyAnswered(true);
+        }
+    });
+
     return (
         <Box>
             <TextField
+                onChange={(event) => {
+                    setCurrentGuess(event.target.value);
+                }}
                 sx={{ width: 500 }}
                 variant='standard'
                 inputProps={{

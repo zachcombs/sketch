@@ -1,13 +1,15 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { useGetDrawing } from '../../utils/useGetDrawing';
 
 const X = 0;
 const Y = 1;
 
-function Canvas() {
+type DrawData = {
+    drawing: Array<Array<Array<number>>>;
+};
+
+function SketchCanvas(drawing: DrawData) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
-    const { drawingData } = useGetDrawing();
 
     const drawStroke = useCallback((stroke: Array<Array<number>>) => {
         contextRef.current?.moveTo(stroke[X][0], stroke[Y][0]);
@@ -22,38 +24,32 @@ function Canvas() {
 
     const startDrawing = useCallback(() => {
         contextRef.current?.beginPath();
-        drawingData?.drawing.forEach((stroke) => {
+        drawing.drawing.forEach((stroke) => {
             setTimeout(() => {
                 drawStroke(stroke);
             }, 500);
         });
         contextRef.current?.closePath();
-    }, [drawStroke, drawingData]);
-
-    // const finishDrawing = () => {
-    //     contextRef.current?.closePath();
-    //     setIsDrawing(false);
-    // };
+    }, [drawStroke, drawing]);
 
     useEffect(() => {
         const canvas = canvasRef?.current;
-        if (canvas) {
+        const context = canvas?.getContext('2d');
+        if (canvas && context) {
             canvas.width = 255;
             canvas.height = 255;
-            // canvas.style.width = '500px';
-            // canvas.style.height = '500px';
-        }
-
-        const context = canvas?.getContext('2d');
-        if (context) {
+            canvas.style.width = '255px';
+            canvas.style.height = '255px';
+            context.clearRect(0, 0, canvas.width, canvas.height);
             context.lineCap = 'round';
             context.strokeStyle = 'black';
             contextRef.current = context;
             context.lineWidth = 2;
         }
+        context?.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
         startDrawing();
-    }, [drawingData, startDrawing]);
+    }, [drawing, startDrawing]);
 
     return (
         <div>
@@ -62,4 +58,4 @@ function Canvas() {
     );
 }
 
-export default Canvas;
+export default SketchCanvas;

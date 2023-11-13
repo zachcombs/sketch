@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-type Drawing = {
+export type Drawing = {
     word: string;
     countrycode: string;
     timestamp: string;
