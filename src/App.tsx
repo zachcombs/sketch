@@ -1,6 +1,6 @@
 import './App.css';
-import GuessASketch from './components/guessASketch/GuessASketch';
 import { ThemeProvider, createTheme } from '@mui/material';
+import GuessASketch from './components/GuessASketch/GuessASketch';
 
 function App() {
     const theme = createTheme({

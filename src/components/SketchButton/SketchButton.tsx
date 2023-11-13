@@ -4,7 +4,7 @@ import { fontifyWord } from '../../utils/Fontify';
 type SketchButtonProps = {
     text: string;
     fontSize?: number;
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick: () => void;
     endIcon?: JSX.Element;
 };
 
@@ -25,7 +25,7 @@ export default function SketchButton({
                     borderRadius: 0,
                     width: 200,
                 }}
-                onClick={onClick}
+                onClick={() => onClick()}
                 endIcon={endIcon}
             >
                 {fontifyWord(text, fontSize)}

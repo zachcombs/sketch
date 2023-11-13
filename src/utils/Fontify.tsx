@@ -6,6 +6,7 @@ export const fontifyWord = (word: string, fontSize: number = 32) => {
     const fontAppliedTitle = characters.map((char, index) => {
         return (
             <Typography
+                // fontFamily={`Handwriting_${Math.floor(Math.random() * 3) + 1}`}
                 fontFamily={`Handwriting_${Math.floor(Math.random() * 3) + 1}`}
                 fontSize={fontSize}
                 key={`fontify-${char}-${word}- ${index}`}
