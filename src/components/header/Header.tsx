@@ -22,11 +22,7 @@ function Header() {
                 </Box>
             </Grid>
             <Grid item xs={4}>
-                <Box
-                    display='flex'
-                    justifyContent='flex-end'
-                    alignItems='center'
-                >
+                <Box display='flex' justifyContent='flex-end'>
                     <Box pr={1} display='flex' alignItems='center'>
                         <IconButton size='large' sx={{ p: 2 }}>
                             <HelpOutline fontSize='large' />
