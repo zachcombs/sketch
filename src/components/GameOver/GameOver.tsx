@@ -1,0 +1,31 @@
+import { Box } from '@mui/material';
+import SketchButton from '../SketchButton/SketchButton';
+import { fontifyWord } from '../../utils/Fontify';
+
+function GameOver({
+    currentScore,
+    handlePlayAgain,
+}: {
+    currentScore: number;
+    handlePlayAgain: () => void;
+}) {
+    return (
+        <Box
+            alignItems='center'
+            display='flex'
+            justifyContent='center'
+            flexDirection='column'
+        >
+            {fontifyWord('You Scored:', 72)}
+            {fontifyWord(`${currentScore}`, 96)}
+
+            <SketchButton
+                text='Play Again'
+                fontSize={32}
+                onClick={handlePlayAgain}
+            />
+        </Box>
+    );
+}
+
+export default GameOver;

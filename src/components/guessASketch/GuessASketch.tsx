@@ -5,10 +5,12 @@ import SketchButton from '../SketchButton/SketchButton';
 import GameBoard from '../GameBoard/GameBoard';
 import CreditsEmblem from '../CreditsEmblem/CreditsEmblem';
 import SplashScreen from '../SplashScreen/SplashScreen';
+import GameOver from '../GameOver/GameOver';
 
 function GuessASketch() {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isGameOver, setIsGameOver] = useState(false);
+    const [currentScore, setCurrentScore] = useState(0);
 
     const handlePlayAgain = () => {
         setIsGameOver(false);
@@ -46,15 +48,17 @@ function GuessASketch() {
                 <>
                     {isGameOver ? (
                         <>
-                            <Box>Oh No! You Lost!</Box>
-                            <SketchButton
-                                text='Play Again'
-                                fontSize={32}
-                                onClick={handlePlayAgain}
+                            <GameOver
+                                currentScore={currentScore}
+                                handlePlayAgain={handlePlayAgain}
                             />
                         </>
                     ) : (
-                        <GameBoard setIsGameOver={setIsGameOver} />
+                        <GameBoard
+                            currentScore={currentScore}
+                            setCurrentScore={setCurrentScore}
+                            setIsGameOver={setIsGameOver}
+                        />
                     )}
                 </>
             )}

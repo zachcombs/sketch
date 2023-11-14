@@ -12,7 +12,6 @@ function Countdown({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
     );
 
     useEffect(() => {
-        console.log('Countdown: ', countdown);
         switch (countdown) {
             case 0:
                 setProgressColor(theme.palette.primary.main);
@@ -30,7 +29,6 @@ function Countdown({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
                 setProgressColor('#ff203a');
                 break;
         }
-        console.log('Progress Color: ', progressColor);
     }, [countdown, progressColor, theme.palette.primary.main]);
 
     const normalise = (value: number) => ((value - MIN) * 100) / (MAX - MIN);

@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, useState } from 'react';
+import { Dispatch, useEffect, useRef, useState } from 'react';
 import SketchCanvas from '../SketchCanvas/SketchCanvas';
 import {
     Box,
@@ -12,21 +12,31 @@ import { fontifyWord } from '../../utils/Fontify';
 import { Drawing } from '../../utils/useGetDrawing';
 import Countdown from '../Countdown/Countdown';
 
-function GameBoard({ setIsGameOver }: { setIsGameOver: Dispatch<boolean> }) {
+function GameBoard({
+    currentScore,
+    setCurrentScore,
+    setIsGameOver,
+}: {
+    currentScore: number;
+    setCurrentScore: Dispatch<number>;
+    setIsGameOver: Dispatch<boolean>;
+}) {
     const theme = useTheme();
     const [isLoading, setIsLoading] = useState(false);
     const [drawingData, setDrawingData] = useState<Drawing>();
     // const [, setServerError] = useState(null);
     const [drawingPopulated, setDrawingPopulated] = useState(false);
-    const [currentScore, setCurrentScore] = useState(0);
+
     const [hasCorrectlyAnswered, setHasCorrectlyAnswered] = useState(false);
+    const fetchRan = useRef<boolean>(null);
 
     useEffect(() => {
         if (hasCorrectlyAnswered === false) return;
+        if (fetchRan) return;
         setCurrentScore(currentScore + 1);
         setDrawingPopulated(false);
         setHasCorrectlyAnswered(false);
-    }, [currentScore, hasCorrectlyAnswered]);
+    }, [currentScore, hasCorrectlyAnswered, setCurrentScore]);
 
     useEffect(() => {
         if (drawingPopulated) return;
