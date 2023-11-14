@@ -5,6 +5,7 @@ import SketchButton from '../SketchButton/SketchButton';
 import GameBoard from '../GameBoard/GameBoard';
 import CreditsEmblem from '../CreditsEmblem/CreditsEmblem';
 import SplashScreen from '../SplashScreen/SplashScreen';
+import Countdown from '../Countdown/Countdown';
 
 function GuessASketch() {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -54,9 +55,12 @@ function GuessASketch() {
                             />
                         </>
                     ) : (
-                        <Box display='flex' justifyContent='center'>
-                            <GameBoard setGameOver={setIsGameOver} />
-                        </Box>
+                        <>
+                            <Countdown setGameOver={setIsGameOver} />
+                            <Box display='flex' justifyContent='center' pt={8}>
+                                <GameBoard />
+                            </Box>
+                        </>
                     )}
                 </>
             )}

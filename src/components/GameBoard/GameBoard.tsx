@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SketchCanvas from '../SketchCanvas/SketchCanvas';
 import {
     Box,
@@ -10,9 +10,8 @@ import {
 import AnswerTextField from '../AnswerTextField/AnswerTextField';
 import { fontifyWord } from '../../utils/Fontify';
 import { Drawing } from '../../utils/useGetDrawing';
-import Countdown from '../Countdown/Countdown';
 
-function GameBoard({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
+function GameBoard() {
     const theme = useTheme();
     const [isLoading, setIsLoading] = useState(false);
     const [drawingData, setDrawingData] = useState<Drawing>();
@@ -77,7 +76,6 @@ function GameBoard({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
                 <>
                     {drawingData ? (
                         <Box display='flex' flexDirection='column'>
-                            <Countdown setGameOver={setGameOver} />
                             <Grid
                                 item
                                 display='flex'
