@@ -1,18 +1,22 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, useEffect, useState } from 'react';
 // import { useGetDrawing } from '../../utils/useGetDrawing';
 import SketchCanvas from '../SketchCanvas/SketchCanvas';
 import { Box, CircularProgress, Typography, useTheme } from '@mui/material';
 import AnswerTextField from '../AnswerTextField/AnswerTextField';
 import { fontifyWord } from '../../utils/Fontify';
 import { Drawing } from '../../utils/useGetDrawing';
+import Countdown from '../Countdown/Countdown';
 
-function GameBoard() {
+type GameBoardProps = {
+    setGameOver: Dispatch<boolean>;
+};
+
+function GameBoard({ setGameOver }: GameBoardProps) {
     const theme = useTheme();
     const [isLoading, setIsLoading] = useState(false);
     const [drawingData, setDrawingData] = useState<Drawing>();
     // const [, setServerError] = useState(null);
     const [drawingPopulated, setDrawingPopulated] = useState(false);
-
     const [currentScore, setCurrentScore] = useState(0);
     const [hasCorrectlyAnswered, setHasCorrectlyAnswered] = useState(false);
 
@@ -54,6 +58,7 @@ function GameBoard() {
                     <>
                         {drawingData ? (
                             <>
+                                <Countdown setGameOver={setGameOver} />
                                 <SketchCanvas drawing={drawingData?.drawing} />
                                 <AnswerTextField
                                     correctAnswer={drawingData?.word}
