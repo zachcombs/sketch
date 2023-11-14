@@ -1,24 +1,50 @@
-import { Box, LinearProgress } from '@mui/material';
+import { Box, LinearProgress, useTheme } from '@mui/material';
 import { Dispatch, useEffect, useState } from 'react';
 
 const MIN = 0;
-const MAX = 1000;
+const MAX = 100;
 
 function Countdown({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
+    const theme = useTheme();
     const [countdown, setCountdown] = useState(0);
+    const [progressColor, setProgressColor] = useState(
+        theme.palette.primary.main
+    );
+
+    useEffect(() => {
+        console.log('Countdown: ', countdown);
+        switch (countdown) {
+            case 0:
+                setProgressColor(theme.palette.primary.main);
+                break;
+            case 20:
+                setProgressColor('#ffa339');
+                break;
+            case 40:
+                setProgressColor('#ff7839');
+                break;
+            case 60:
+                setProgressColor('#ff4d39');
+                break;
+            case 80:
+                setProgressColor('#ff203a');
+                break;
+        }
+        console.log('Progress Color: ', progressColor);
+    }, [countdown, progressColor, theme.palette.primary.main]);
 
     const normalise = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
 
     useEffect(() => {
         const timer = setInterval(() => {
             setCountdown((oldCountdown) => {
-                if (oldCountdown === MAX) {
+                if (oldCountdown > MAX) {
                     setGameOver(true);
                     return 0;
                 }
                 return oldCountdown + 1;
             });
-        }, 1000);
+        }, 100);
 
         return () => {
             clearInterval(timer);
@@ -27,10 +53,13 @@ function Countdown({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <LinearProgress
-                variant='determinate'
-                value={normalise(countdown)}
-            />
+            <Box sx={{ color: progressColor }}>
+                <LinearProgress
+                    color='inherit'
+                    variant='determinate'
+                    value={normalise(countdown)}
+                />
+            </Box>
         </Box>
     );
 }
