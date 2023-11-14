@@ -1,17 +1,18 @@
 import { Dispatch, useEffect, useState } from 'react';
-// import { useGetDrawing } from '../../utils/useGetDrawing';
 import SketchCanvas from '../SketchCanvas/SketchCanvas';
-import { Box, CircularProgress, Typography, useTheme } from '@mui/material';
+import {
+    Box,
+    CircularProgress,
+    Grid,
+    Typography,
+    useTheme,
+} from '@mui/material';
 import AnswerTextField from '../AnswerTextField/AnswerTextField';
 import { fontifyWord } from '../../utils/Fontify';
 import { Drawing } from '../../utils/useGetDrawing';
 import Countdown from '../Countdown/Countdown';
 
-type GameBoardProps = {
-    setGameOver: Dispatch<boolean>;
-};
-
-function GameBoard({ setGameOver }: GameBoardProps) {
+function GameBoard({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
     const theme = useTheme();
     const [isLoading, setIsLoading] = useState(false);
     const [drawingData, setDrawingData] = useState<Drawing>();
@@ -41,24 +42,49 @@ function GameBoard({ setGameOver }: GameBoardProps) {
     }, [drawingPopulated]);
 
     const ScoreCard = () => (
-        <Box
-            display='flex'
-            sx={{ backgroundColor: theme.palette.primary.main }}
-        >
-            {fontifyWord(`Score: ${currentScore}`)}
-        </Box>
+        <Box display='flex'>{fontifyWord(`Score: ${currentScore}`, 48)}</Box>
     );
 
-    const DrawSection = () => {
-        return (
-            <>
-                {isLoading ? (
-                    <CircularProgress />
-                ) : (
-                    <>
-                        {drawingData ? (
-                            <>
-                                <Countdown setGameOver={setGameOver} />
+    return (
+        <>
+            {isLoading ? (
+                <Grid
+                    item
+                    display='flex'
+                    alignItems='center'
+                    flexDirection='column'
+                    gap={10}
+                >
+                    <Box sx={{ position: 'absolute', bottom: '50%' }}>
+                        <Box display='flex' justifyContent='center'>
+                            <CircularProgress size='10rem' />
+                        </Box>
+                        <Box pt={2}>
+                            <Typography
+                                fontFamily={'Roboto_Regular'}
+                                style={{
+                                    color: theme.palette.primary.main,
+                                }}
+                                textAlign='center'
+                                fontSize={24}
+                            >
+                                Fetching drawing
+                            </Typography>
+                        </Box>
+                    </Box>
+                </Grid>
+            ) : (
+                <>
+                    {drawingData ? (
+                        <Box display='flex' flexDirection='column'>
+                            <Countdown setGameOver={setGameOver} />
+                            <Grid
+                                item
+                                display='flex'
+                                alignItems='center'
+                                flexDirection='column'
+                                gap={10}
+                            >
                                 <SketchCanvas drawing={drawingData?.drawing} />
                                 <AnswerTextField
                                     correctAnswer={drawingData?.word}
@@ -66,22 +92,19 @@ function GameBoard({ setGameOver }: GameBoardProps) {
                                         setHasCorrectlyAnswered
                                     }
                                 />
-                            </>
-                        ) : (
-                            <Typography>
-                                There was an error drawing the sketch!
-                            </Typography>
-                        )}
-                    </>
-                )}
-            </>
-        );
-    };
+                            </Grid>
+                        </Box>
+                    ) : (
+                        <Typography>
+                            There was an error drawing the sketch!
+                        </Typography>
+                    )}
+                </>
+            )}
 
-    return (
-        <>
-            <ScoreCard />
-            <DrawSection />
+            <Box p={2} sx={{ position: 'absolute', bottom: 0 }}>
+                <ScoreCard />
+            </Box>
         </>
     );
 }

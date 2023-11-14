@@ -2,13 +2,9 @@ import { Box, LinearProgress } from '@mui/material';
 import { Dispatch, useEffect, useState } from 'react';
 
 const MIN = 0;
-const MAX = 10;
+const MAX = 1000;
 
-type CountdownProps = {
-    setGameOver: Dispatch<boolean>;
-};
-
-function Countdown({ setGameOver }: CountdownProps) {
+function Countdown({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
     const [countdown, setCountdown] = useState(0);
 
     const normalise = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
@@ -16,7 +12,7 @@ function Countdown({ setGameOver }: CountdownProps) {
     useEffect(() => {
         const timer = setInterval(() => {
             setCountdown((oldCountdown) => {
-                if (oldCountdown === 10) {
+                if (oldCountdown === MAX) {
                     setGameOver(true);
                     return 0;
                 }

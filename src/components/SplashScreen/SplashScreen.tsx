@@ -18,7 +18,11 @@ function SplashScreen() {
             >
                 <Typography fontFamily='Roboto_Regular' fontSize={24}>
                     This game utilizes drawing's from Google's
-                    <Typography fontFamily='Roboto_Regular' fontSize={24}>
+                    <Typography
+                        component='span'
+                        fontFamily='Roboto_Regular'
+                        fontSize={24}
+                    >
                         Quick, Draw!
                     </Typography>
                     <a

@@ -16,7 +16,7 @@ function AnswerTextField({
         if (currentGuess === correctAnswer) {
             setHasCorrectlyAnswered(true);
         }
-    });
+    }, [correctAnswer, currentGuess, setHasCorrectlyAnswered]);
 
     return (
         <Box>
