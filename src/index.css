@@ -13,6 +13,21 @@
   src: local('Handwriting_3'), url(./fonts/Handwriting_3.otf) format('opentype');
 }
 
+@font-face {
+  font-family: 'Roboto_Medium';
+  src: local('Roboto-Medium'), url(./fonts/Roboto-Medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto_Light';
+  src: local('Roboto-Light'), url(./fonts/Roboto-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto_Regular';
+  src: local('Roboto-Regular'), url(./fonts/Roboto-Regular.ttf) format('truetype');
+}
+
 body {
   margin: 0;
 }

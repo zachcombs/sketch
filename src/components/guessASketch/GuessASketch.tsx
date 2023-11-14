@@ -1,9 +1,10 @@
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import Header from '../Header/Header';
 // import PlayButton from '../Play/Play';
 import { useEffect, useState } from 'react';
 import SketchButton from '../SketchButton/SketchButton';
 import GameBoard from '../GameBoard/GameBoard';
+import CreditsEmblem from '../CreditsEmblem/CreditsEmblem';
 
 function GuessASketch() {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -19,16 +20,29 @@ function GuessASketch() {
     };
 
     return (
-        <Box>
+        <Grid container>
             <Header />
             {!isPlaying ? (
-                <Box display='flex' justifyContent='center'>
-                    <SketchButton
-                        text='Play'
-                        fontSize={32}
-                        onClick={() => setIsPlaying(true)}
-                    />
-                </Box>
+                <>
+                    <Grid
+                        container
+                        display='flex'
+                        justifyContent='center'
+                        flexDirection='column'
+                    >
+                        <Grid item>
+                            <SketchButton
+                                text='Play'
+                                fontSize={32}
+                                onClick={() => setIsPlaying(true)}
+                            />
+                        </Grid>
+                        <Grid item></Grid>
+                    </Grid>
+                    <Box p={2} sx={{ position: 'fixed', bottom: 0 }}>
+                        <CreditsEmblem />
+                    </Box>
+                </>
             ) : (
                 <>
                     {isGameOver ? (
@@ -47,7 +61,7 @@ function GuessASketch() {
                     )}
                 </>
             )}
-        </Box>
+        </Grid>
     );
 }
 
