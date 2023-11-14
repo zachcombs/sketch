@@ -1,18 +1,14 @@
 import { Box, Grid } from '@mui/material';
 import Header from '../Header/Header';
-// import PlayButton from '../Play/Play';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SketchButton from '../SketchButton/SketchButton';
 import GameBoard from '../GameBoard/GameBoard';
 import CreditsEmblem from '../CreditsEmblem/CreditsEmblem';
+import SplashScreen from '../SplashScreen/SplashScreen';
 
 function GuessASketch() {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isGameOver, setIsGameOver] = useState(false);
-
-    useEffect(() => {
-        if (isGameOver === false) return;
-    }, [isGameOver]);
 
     const handlePlayAgain = () => {
         setIsGameOver(false);
@@ -20,29 +16,32 @@ function GuessASketch() {
     };
 
     return (
-        <Grid container>
-            <Header />
+        <>
+            <Header isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
             {!isPlaying ? (
-                <>
+                <Grid alignItems='center' container>
                     <Grid
                         container
                         display='flex'
                         justifyContent='center'
                         flexDirection='column'
+                        spacing={2}
                     >
                         <Grid item>
+                            <SplashScreen />
+                        </Grid>
+                        <Grid item display='flex' justifyContent='center'>
                             <SketchButton
                                 text='Play'
                                 fontSize={32}
                                 onClick={() => setIsPlaying(true)}
                             />
                         </Grid>
-                        <Grid item></Grid>
                     </Grid>
-                    <Box p={2} sx={{ position: 'fixed', bottom: 0 }}>
+                    <Box p={2} sx={{ position: 'absolute', bottom: 0 }}>
                         <CreditsEmblem />
                     </Box>
-                </>
+                </Grid>
             ) : (
                 <>
                     {isGameOver ? (
@@ -55,13 +54,11 @@ function GuessASketch() {
                             />
                         </>
                     ) : (
-                        <Box display='flex' justifyContent='center'>
-                            <GameBoard setGameOver={setIsGameOver} />
-                        </Box>
+                        <GameBoard setIsGameOver={setIsGameOver} />
                     )}
                 </>
             )}
-        </Grid>
+        </>
     );
 }
 
