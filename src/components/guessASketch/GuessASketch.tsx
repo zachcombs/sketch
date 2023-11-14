@@ -13,6 +13,7 @@ function GuessASketch() {
     const [currentScore, setCurrentScore] = useState(0);
 
     const handlePlayAgain = () => {
+        setCurrentScore(0);
         setIsGameOver(false);
         setIsPlaying(true);
     };

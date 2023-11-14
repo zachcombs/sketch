@@ -1,5 +1,6 @@
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material';
+import { CookiesProvider } from 'react-cookie';
 import GuessASketch from './components/GuessASketch/GuessASketch';
 
 function App() {
@@ -38,9 +39,11 @@ function App() {
     });
 
     return (
-        <ThemeProvider theme={theme}>
-            <GuessASketch />
-        </ThemeProvider>
+        <CookiesProvider>
+            <ThemeProvider theme={theme}>
+                <GuessASketch />
+            </ThemeProvider>
+        </CookiesProvider>
     );
 }
 

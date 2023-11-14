@@ -13,7 +13,9 @@ function AnswerTextField({
     const [currentGuess, setCurrentGuess] = useState('');
 
     useEffect(() => {
+        console.log('Current Guess: ', currentGuess);
         if (currentGuess === correctAnswer) {
+            console.log('setting');
             setHasCorrectlyAnswered(true);
         }
     }, [correctAnswer, currentGuess, setHasCorrectlyAnswered]);

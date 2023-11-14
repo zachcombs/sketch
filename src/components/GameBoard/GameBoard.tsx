@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, useRef, useState } from 'react';
+import { Dispatch, useEffect, useState } from 'react';
 import SketchCanvas from '../SketchCanvas/SketchCanvas';
 import {
     Box,
@@ -26,13 +26,10 @@ function GameBoard({
     const [drawingData, setDrawingData] = useState<Drawing>();
     // const [, setServerError] = useState(null);
     const [drawingPopulated, setDrawingPopulated] = useState(false);
-
     const [hasCorrectlyAnswered, setHasCorrectlyAnswered] = useState(false);
-    const fetchRan = useRef<boolean>(null);
 
     useEffect(() => {
         if (hasCorrectlyAnswered === false) return;
-        if (fetchRan) return;
         setCurrentScore(currentScore + 1);
         setDrawingPopulated(false);
         setHasCorrectlyAnswered(false);
