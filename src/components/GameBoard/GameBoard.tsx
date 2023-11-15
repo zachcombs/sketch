@@ -108,9 +108,16 @@ function GameBoard({
                                         alignItems='center'
                                         flexDirection='column'
                                     >
-                                        <SketchCanvas
-                                            drawing={drawingData?.drawing}
-                                        />
+                                        <Box
+                                            p={4}
+                                            sx={{
+                                                boxShadow: 3,
+                                            }}
+                                        >
+                                            <SketchCanvas
+                                                drawing={drawingData?.drawing}
+                                            />
+                                        </Box>
                                         <AnswerTextField
                                             correctAnswer={drawingData?.word}
                                             setHasCorrectlyAnswered={

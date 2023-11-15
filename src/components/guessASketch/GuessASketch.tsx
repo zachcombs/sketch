@@ -45,7 +45,7 @@ function GuessASketch() {
                                 <SketchButton
                                     text='Play'
                                     fontSize={32}
-                                    onClick={() => setIsPlaying(true)}
+                                    onClick={handlePlayAgain}
                                 />
                             </Grid>
                         </Grid>

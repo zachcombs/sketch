@@ -25,9 +25,9 @@ function GameOver({
             justifyContent='center'
             flexDirection='column'
         >
-            {fontifyWord('You Scored:', 72)}
+            {fontifyWord('You Scored', 72)}
             {fontifyWord(`${currentScore}`, 96)}
-            {fontifyWord('Your Highest Score:', 74)}
+            {fontifyWord('Your Highest Score', 74)}
             {fontifyWord(`${cookies.score}`, 96)}
             <SketchButton
                 text='Play Again'
