@@ -44,7 +44,7 @@ function GameBoard({
         if (drawingPopulated) return;
         setIsLoading(true);
 
-        fetch('http://localhost:8080/drawing', { method: 'GET' })
+        fetch('http://localhost:8080/drawing/t-shirt', { method: 'GET' })
             .then((response) => response.json())
             .then((data) => setDrawingData(data))
             // .catch((err) => setServerError(err))

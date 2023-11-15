@@ -37,7 +37,6 @@ function AnswerTextField({
     }, [correctAnswer]);
 
     useEffect(() => {
-        console.log('current guess', currentGuess);
         if (currentGuess.join('').toLowerCase() === correctAnswer) {
             setHasCorrectlyAnswered(true);
         }
@@ -91,20 +90,29 @@ function AnswerTextField({
                         },
                     }}
                     onKeyDown={(event) => {
-                        if (event.key === 'Backspace') {
-                            const items = [...currentGuess];
-                            if (
-                                index === currentGuess.length - 1 &&
-                                items[index] !== ''
-                            ) {
-                                items[index] = '';
-                                setCurrentGuess(items);
+                        if (event.key !== 'Backspace') return;
+                        const items = [...currentGuess];
+                        if (
+                            index === currentGuess.length - 1 &&
+                            items[index] !== ''
+                        ) {
+                            items[index] = '';
+                            setCurrentGuess(items);
+                        } else {
+                            if (index === 0) {
+                                items[0] = '';
                             } else {
-                                if (index === 0) {
-                                    items[0] = '';
+                                if (items[index] !== '') {
+                                    items[index] = '';
                                 } else {
-                                    if (items[index] !== '') {
-                                        items[index] = '';
+                                    if (
+                                        items[index - 1] === ' ' ||
+                                        items[index - 1] === '-'
+                                    ) {
+                                        items[index - 2] = '';
+                                        const previous =
+                                            textfieldRef.current[index - 2];
+                                        previous?.focus();
                                     } else {
                                         items[index - 1] = '';
                                         const previous =
@@ -112,8 +120,8 @@ function AnswerTextField({
                                         previous?.focus();
                                     }
                                 }
-                                setCurrentGuess(items);
                             }
+                            setCurrentGuess(items);
                         }
                     }}
                     onChange={(event) => {
@@ -122,9 +130,18 @@ function AnswerTextField({
                         const items = [...currentGuess];
                         items[index] = event.target.value.toUpperCase();
                         setCurrentGuess(items);
-                        const next = textfieldRef.current[index + 1];
-                        if (next && items[index] !== '') {
-                            next.focus();
+                        let next;
+                        if (
+                            items[index + 1] === ' ' ||
+                            items[index + 1] === '-'
+                        ) {
+                            next = textfieldRef.current[index + 2];
+                            next?.focus();
+                        }
+
+                        if (items[index] !== '') {
+                            next = textfieldRef.current[index + 1];
+                            next?.focus();
                         }
                     }}
                     value={currentGuess[index]}
