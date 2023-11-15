@@ -1,5 +1,5 @@
 import { Box, TextField, Typography } from '@mui/material';
-import { Dispatch, useEffect, useState } from 'react';
+import { Dispatch, useEffect, useRef, useState } from 'react';
 
 const initializeCurrentGuess = (correctAnswer: string) => {
     const tempArray = Array<string>(correctAnswer.length);
@@ -26,12 +26,26 @@ function AnswerTextField({
     const [currentGuess, setCurrentGuess] = useState(
         initializeCurrentGuess(correctAnswer)
     );
+    const textfieldRef = useRef<Array<HTMLDivElement | null>>([]);
 
     useEffect(() => {
+        setCurrentGuess(initializeCurrentGuess(correctAnswer));
+        textfieldRef.current = textfieldRef.current.slice(
+            0,
+            correctAnswer.length
+        );
+    }, [correctAnswer]);
+
+    useEffect(() => {
+        console.log('current guess', currentGuess);
         if (currentGuess.join('').toLowerCase() === correctAnswer) {
             setHasCorrectlyAnswered(true);
         }
     }, [correctAnswer, currentGuess, setHasCorrectlyAnswered]);
+
+    useEffect(() => {
+        textfieldRef.current[0]?.focus();
+    }, [textfieldRef]);
 
     const answerLetterMap = [...correctAnswer].map((char, index) => {
         if (char === ' ') {
@@ -46,7 +60,6 @@ function AnswerTextField({
                         textAlign={'center'}
                         width={50}
                         height={50}
-                        key={`answer-input-${index}`}
                     >
                         {' '}
                         -
@@ -55,9 +68,18 @@ function AnswerTextField({
             );
         }
 
+        /**
+         * I apologize in advance to anyone who reads this component
+         * and tries to understand the logic surround the textfield.
+         *
+         * Formatting the textfield like Wordle turned out to be
+         * much harder than anticipated and this took much longer
+         * than anticipated
+         */
         return (
             <Box p={1}>
                 <TextField
+                    inputRef={(ref) => (textfieldRef.current[index] = ref)}
                     key={`answer-textfield-${index}`}
                     inputProps={{
                         style: {
@@ -68,14 +90,44 @@ function AnswerTextField({
                             height: 50,
                         },
                     }}
+                    onKeyDown={(event) => {
+                        if (event.key === 'Backspace') {
+                            const items = [...currentGuess];
+                            if (
+                                index === currentGuess.length - 1 &&
+                                items[index] !== ''
+                            ) {
+                                items[index] = '';
+                                setCurrentGuess(items);
+                            } else {
+                                if (index === 0) {
+                                    items[0] = '';
+                                } else {
+                                    if (items[index] !== '') {
+                                        items[index] = '';
+                                    } else {
+                                        items[index - 1] = '';
+                                        const previous =
+                                            textfieldRef.current[index - 1];
+                                        previous?.focus();
+                                    }
+                                }
+                                setCurrentGuess(items);
+                            }
+                        }
+                    }}
                     onChange={(event) => {
+                        if (!event.target.value.match('[a-zA-Z]')) return;
                         if (event.target.value.length > 1) return;
                         const items = [...currentGuess];
                         items[index] = event.target.value.toUpperCase();
                         setCurrentGuess(items);
+                        const next = textfieldRef.current[index + 1];
+                        if (next && items[index] !== '') {
+                            next.focus();
+                        }
                     }}
                     value={currentGuess[index]}
-                    {...(index === 0 && { autoFocus: true })}
                 />
             </Box>
         );

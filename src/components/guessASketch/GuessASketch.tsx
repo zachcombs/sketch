@@ -53,12 +53,13 @@ function GuessASketch() {
                                 />
                             </Grid>
                         </Grid>
-                        <Grid container p={2} xs={4}>
+                        <Grid container item p={2} xs={4}>
                             <CreditsEmblem />
                         </Grid>
                         {cookies.score > 0 && (
                             <Grid
                                 container
+                                item
                                 p={2}
                                 xs={4}
                                 justifyContent='center'
