@@ -53,56 +53,60 @@ function GameBoard({
     );
 
     return (
-        <>
-            <Box
-                display='flex'
-                justifyContent='center'
-                p={2}
-                sx={{ position: 'absolute' }}
-            >
-                <ScoreCard />
-            </Box>
+        <Grid
+            alignItems='center'
+            container
+            sx={{ height: '100%' }}
+            justifyContent='center'
+            alignContent='space-between'
+        >
             {isLoading ? (
-                <Box display='flex' justifyContent='center' pt={8}>
-                    <Grid
-                        item
-                        display='flex'
-                        alignItems='center'
-                        flexDirection='column'
-                        gap={10}
-                    >
-                        <Box sx={{ position: 'absolute', bottom: '50%' }}>
-                            <Box display='flex' justifyContent='center'>
-                                <CircularProgress size='10rem' />
-                            </Box>
-                            <Box pt={2}>
-                                <Typography
-                                    fontFamily={'Roboto_Regular'}
-                                    style={{
-                                        color: theme.palette.primary.main,
-                                    }}
-                                    textAlign='center'
-                                    fontSize={24}
-                                >
-                                    Fetching drawing
-                                </Typography>
-                            </Box>
-                        </Box>
+                <>
+                    <Grid item xs={12} />
+                    <Grid container display='flex' flexDirection='column'>
+                        <Grid item display='flex' justifyContent='center'>
+                            <CircularProgress size='10rem' />
+                        </Grid>
+                        <Grid
+                            item
+                            pt={2}
+                            display='flex'
+                            justifyContent='center'
+                        >
+                            <Typography
+                                fontFamily={'Roboto_Regular'}
+                                style={{
+                                    color: theme.palette.primary.main,
+                                }}
+                                textAlign='center'
+                                fontSize={24}
+                            >
+                                Fetching drawing
+                            </Typography>
+                        </Grid>
                     </Grid>
-                </Box>
+                </>
             ) : (
                 <>
                     {drawingData ? (
                         <>
                             <Countdown setGameOver={setIsGameOver} />
-                            <Box display='flex' justifyContent='center' pt={8}>
-                                <Box display='flex' flexDirection='column'>
+                            <Grid
+                                container
+                                display='flex'
+                                flexDirection='column'
+                            >
+                                <Box
+                                    display='flex'
+                                    justifyContent='center'
+                                    width='100%'
+                                    flexDirection='column'
+                                >
                                     <Grid
                                         item
                                         display='flex'
                                         alignItems='center'
                                         flexDirection='column'
-                                        gap={10}
                                     >
                                         <SketchCanvas
                                             drawing={drawingData?.drawing}
@@ -115,7 +119,7 @@ function GameBoard({
                                         />
                                     </Grid>
                                 </Box>
-                            </Box>
+                            </Grid>
                         </>
                     ) : (
                         <Typography>
@@ -124,7 +128,8 @@ function GameBoard({
                     )}
                 </>
             )}
-        </>
+            <ScoreCard />
+        </Grid>
     );
 }
 

@@ -50,14 +50,12 @@ function Countdown({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
     }, [setGameOver]);
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ color: progressColor }}>
-                <LinearProgress
-                    color='inherit'
-                    variant='determinate'
-                    value={normalise(countdown)}
-                />
-            </Box>
+        <Box sx={{ width: '100%', color: progressColor }}>
+            <LinearProgress
+                color='inherit'
+                variant='determinate'
+                value={normalise(countdown)}
+            />
         </Box>
     );
 }
