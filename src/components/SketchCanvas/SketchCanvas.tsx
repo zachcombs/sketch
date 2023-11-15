@@ -3,11 +3,7 @@ import { useCallback, useEffect, useRef } from 'react';
 const X = 0;
 const Y = 1;
 
-type DrawData = {
-    drawing: Array<Array<Array<number>>>;
-};
-
-function SketchCanvas(drawing: DrawData) {
+function SketchCanvas(drawing: { drawing: Array<Array<Array<number>>> }) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
 

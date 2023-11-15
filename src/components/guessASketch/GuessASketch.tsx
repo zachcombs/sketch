@@ -5,60 +5,89 @@ import SketchButton from '../SketchButton/SketchButton';
 import GameBoard from '../GameBoard/GameBoard';
 import CreditsEmblem from '../CreditsEmblem/CreditsEmblem';
 import SplashScreen from '../SplashScreen/SplashScreen';
+import GameOver from '../GameOver/GameOver';
+import { fontifyWord } from '../../utils/Fontify';
+import { useCookies } from 'react-cookie';
+import { Drawing } from '../../utils/useGetDrawing';
 
 function GuessASketch() {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isGameOver, setIsGameOver] = useState(false);
+    const [currentScore, setCurrentScore] = useState(0);
+    const [cookies] = useCookies(['score']);
+    const [isLoading, setIsLoading] = useState(false);
+    const [drawingData, setDrawingData] = useState<Drawing>();
+    // const [, setServerError] = useState(null);
 
     const handlePlayAgain = () => {
+        setCurrentScore(0);
         setIsGameOver(false);
         setIsPlaying(true);
     };
 
     return (
-        <>
+        <Box display='flex' flexDirection='column' sx={{ height: '100vh' }}>
             <Header isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
             {!isPlaying ? (
-                <Grid alignItems='center' container>
+                <>
                     <Grid
+                        alignItems='center'
                         container
-                        display='flex'
-                        justifyContent='center'
-                        flexDirection='column'
-                        spacing={2}
+                        sx={{ height: '100%' }}
+                        alignContent='space-between'
                     >
-                        <Grid item>
-                            <SplashScreen />
+                        <Grid
+                            container
+                            display='flex'
+                            flexDirection='column'
+                            spacing={2}
+                        >
+                            <Grid item>
+                                <SplashScreen />
+                            </Grid>
+                            <Grid item display='flex' justifyContent='center'>
+                                <SketchButton
+                                    text='Play'
+                                    fontSize={32}
+                                    onClick={handlePlayAgain}
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item display='flex' justifyContent='center'>
-                            <SketchButton
-                                text='Play'
-                                fontSize={32}
-                                onClick={() => setIsPlaying(true)}
-                            />
+                        <Grid container p={2} xs={4}>
+                            <CreditsEmblem />
+                        </Grid>
+                        <Grid container p={2} xs={4} justifyContent='center'>
+                            {fontifyWord(
+                                `Your Highest Score: ${cookies.score}`,
+                                32
+                            )}
                         </Grid>
                     </Grid>
-                    <Box p={2} sx={{ position: 'absolute', bottom: 0 }}>
-                        <CreditsEmblem />
-                    </Box>
-                </Grid>
+                </>
             ) : (
                 <>
-                    {isGameOver ? (
+                    {isGameOver && drawingData ? (
                         <>
-                            <Box>Oh No! You Lost!</Box>
-                            <SketchButton
-                                text='Play Again'
-                                fontSize={32}
-                                onClick={handlePlayAgain}
+                            <GameOver
+                                currentScore={currentScore}
+                                handlePlayAgain={handlePlayAgain}
+                                currentAnswer={drawingData?.word}
                             />
                         </>
                     ) : (
-                        <GameBoard setIsGameOver={setIsGameOver} />
+                        <GameBoard
+                            currentScore={currentScore}
+                            setCurrentScore={setCurrentScore}
+                            setIsGameOver={setIsGameOver}
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}
+                            drawingData={drawingData}
+                            setDrawingData={setDrawingData}
+                        />
                     )}
                 </>
             )}
-        </>
+        </Box>
     );
 }
 
