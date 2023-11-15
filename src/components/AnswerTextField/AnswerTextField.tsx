@@ -46,6 +46,7 @@ function AnswerTextField({
                         textAlign={'center'}
                         width={50}
                         height={50}
+                        key={`answer-input-${index}`}
                     >
                         {' '}
                         -

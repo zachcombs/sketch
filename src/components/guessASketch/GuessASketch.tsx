@@ -56,12 +56,19 @@ function GuessASketch() {
                         <Grid container p={2} xs={4}>
                             <CreditsEmblem />
                         </Grid>
-                        <Grid container p={2} xs={4} justifyContent='center'>
-                            {fontifyWord(
-                                `Your Highest Score: ${cookies.score}`,
-                                32
-                            )}
-                        </Grid>
+                        {cookies.score > 0 && (
+                            <Grid
+                                container
+                                p={2}
+                                xs={4}
+                                justifyContent='center'
+                            >
+                                {fontifyWord(
+                                    `Your High Score: ${cookies.score}`,
+                                    32
+                                )}
+                            </Grid>
+                        )}
                     </Grid>
                 </>
             ) : (

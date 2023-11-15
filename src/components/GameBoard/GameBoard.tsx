@@ -123,12 +123,16 @@ function GameBoard({
                                                 drawing={drawingData?.drawing}
                                             />
                                         </Box>
-                                        <AnswerTextField
-                                            correctAnswer={drawingData?.word}
-                                            setHasCorrectlyAnswered={
-                                                setHasCorrectlyAnswered
-                                            }
-                                        />
+                                        <Box pt={2}>
+                                            <AnswerTextField
+                                                correctAnswer={
+                                                    drawingData?.word
+                                                }
+                                                setHasCorrectlyAnswered={
+                                                    setHasCorrectlyAnswered
+                                                }
+                                            />
+                                        </Box>
                                     </Grid>
                                 </Box>
                             </Grid>
