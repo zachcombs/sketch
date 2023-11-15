@@ -37,7 +37,9 @@ function AnswerTextField({
     }, [correctAnswer]);
 
     useEffect(() => {
-        if (currentGuess.join('').toLowerCase() === correctAnswer) {
+        if (
+            currentGuess.join('').toLowerCase() === correctAnswer.toLowerCase()
+        ) {
             setHasCorrectlyAnswered(true);
         }
     }, [correctAnswer, currentGuess, setHasCorrectlyAnswered]);
