@@ -8,12 +8,16 @@ import SplashScreen from '../SplashScreen/SplashScreen';
 import GameOver from '../GameOver/GameOver';
 import { fontifyWord } from '../../utils/Fontify';
 import { useCookies } from 'react-cookie';
+import { Drawing } from '../../utils/useGetDrawing';
 
 function GuessASketch() {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isGameOver, setIsGameOver] = useState(false);
     const [currentScore, setCurrentScore] = useState(0);
     const [cookies] = useCookies(['score']);
+    const [isLoading, setIsLoading] = useState(false);
+    const [drawingData, setDrawingData] = useState<Drawing>();
+    // const [, setServerError] = useState(null);
 
     const handlePlayAgain = () => {
         setCurrentScore(0);
@@ -62,11 +66,12 @@ function GuessASketch() {
                 </>
             ) : (
                 <>
-                    {isGameOver ? (
+                    {isGameOver && drawingData ? (
                         <>
                             <GameOver
                                 currentScore={currentScore}
                                 handlePlayAgain={handlePlayAgain}
+                                currentAnswer={drawingData?.word}
                             />
                         </>
                     ) : (
@@ -74,6 +79,10 @@ function GuessASketch() {
                             currentScore={currentScore}
                             setCurrentScore={setCurrentScore}
                             setIsGameOver={setIsGameOver}
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}
+                            drawingData={drawingData}
+                            setDrawingData={setDrawingData}
                         />
                     )}
                 </>

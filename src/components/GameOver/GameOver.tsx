@@ -5,9 +5,11 @@ import { useCookies } from 'react-cookie';
 import { useEffect } from 'react';
 
 function GameOver({
+    currentAnswer,
     currentScore,
     handlePlayAgain,
 }: {
+    currentAnswer: string;
     currentScore: number;
     handlePlayAgain: () => void;
 }) {
@@ -25,10 +27,12 @@ function GameOver({
             justifyContent='center'
             flexDirection='column'
         >
-            {fontifyWord('You Scored', 72)}
-            {fontifyWord(`${currentScore}`, 96)}
-            {fontifyWord('Your Highest Score', 74)}
-            {fontifyWord(`${cookies.score}`, 96)}
+            {fontifyWord('The word was: ', 48)}
+            {fontifyWord(`${currentAnswer}`, 64)}
+            {fontifyWord('You scored', 48)}
+            {fontifyWord(`${currentScore}`, 64)}
+            {fontifyWord('Your highest score', 48)}
+            {fontifyWord(`${cookies.score}`, 64)}
             <SketchButton
                 text='Play Again'
                 fontSize={32}

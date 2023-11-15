@@ -9,22 +9,27 @@ import {
 } from '@mui/material';
 import AnswerTextField from '../AnswerTextField/AnswerTextField';
 import { fontifyWord } from '../../utils/Fontify';
-import { Drawing } from '../../utils/useGetDrawing';
 import Countdown from '../Countdown/Countdown';
+import { Drawing } from '../../utils/useGetDrawing';
 
 function GameBoard({
     currentScore,
     setCurrentScore,
     setIsGameOver,
+    isLoading,
+    setIsLoading,
+    drawingData,
+    setDrawingData,
 }: {
     currentScore: number;
     setCurrentScore: Dispatch<number>;
     setIsGameOver: Dispatch<boolean>;
+    isLoading: boolean;
+    setIsLoading: Dispatch<boolean>;
+    drawingData: Drawing | undefined;
+    setDrawingData: Dispatch<Drawing>;
 }) {
     const theme = useTheme();
-    const [isLoading, setIsLoading] = useState(false);
-    const [drawingData, setDrawingData] = useState<Drawing>();
-    // const [, setServerError] = useState(null);
     const [drawingPopulated, setDrawingPopulated] = useState(false);
     const [hasCorrectlyAnswered, setHasCorrectlyAnswered] = useState(false);
 
@@ -46,7 +51,7 @@ function GameBoard({
             .finally(() => setIsLoading(false));
 
         setDrawingPopulated(true);
-    }, [drawingPopulated]);
+    }, [drawingPopulated, setDrawingData, setIsLoading]);
 
     const ScoreCard = () => (
         <Box display='flex'>{fontifyWord(`Score: ${currentScore}`, 48)}</Box>
