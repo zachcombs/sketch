@@ -44,7 +44,9 @@ function GameBoard({
         if (drawingPopulated) return;
         setIsLoading(true);
 
-        fetch('http://localhost:8080/drawing', { method: 'GET' })
+        fetch('http://localhost:8080/drawing', {
+            method: 'GET',
+        })
             .then((response) => response.json())
             .then((data) => setDrawingData(data))
             // .catch((err) => setServerError(err))
@@ -123,12 +125,16 @@ function GameBoard({
                                                 drawing={drawingData?.drawing}
                                             />
                                         </Box>
-                                        <AnswerTextField
-                                            correctAnswer={drawingData?.word}
-                                            setHasCorrectlyAnswered={
-                                                setHasCorrectlyAnswered
-                                            }
-                                        />
+                                        <Box pt={2}>
+                                            <AnswerTextField
+                                                correctAnswer={
+                                                    drawingData?.word
+                                                }
+                                                setHasCorrectlyAnswered={
+                                                    setHasCorrectlyAnswered
+                                                }
+                                            />
+                                        </Box>
                                     </Grid>
                                 </Box>
                             </Grid>
