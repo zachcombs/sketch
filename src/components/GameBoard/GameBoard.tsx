@@ -46,6 +46,7 @@ function GameBoard({
 
         fetch('https://rusty-guess-a-sketch.onrender.com/drawing', {
             method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
         })
             .then((response) => response.json())
             .then((data) => setDrawingData(data))
