@@ -44,7 +44,7 @@ function GameBoard({
         if (drawingPopulated) return;
         setIsLoading(true);
 
-        fetch('http://localhost:8080/drawing', {
+        fetch('https://rusty-guess-a-sketch.onrender.com', {
             method: 'GET',
         })
             .then((response) => response.json())
