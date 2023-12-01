@@ -1,35 +1,88 @@
 @font-face {
-  font-family: 'Handwriting_1';
-  src: local('Handwriting_1'), url(./fonts/Handwriting_1.otf) format('opentype');
+    font-family: 'Handwriting_1';
+    src: local('Handwriting_1'),
+        url(./fonts/Handwriting_1.otf) format('opentype');
 }
 
 @font-face {
-  font-family: 'Handwriting_2';
-  src: local('Handwriting_2'), url(./fonts/Handwriting_2.otf) format('opentype');
+    font-family: 'Handwriting_2';
+    src: local('Handwriting_2'),
+        url(./fonts/Handwriting_2.otf) format('opentype');
 }
 
 @font-face {
-  font-family: 'Handwriting_3';
-  src: local('Handwriting_3'), url(./fonts/Handwriting_3.otf) format('opentype');
+    font-family: 'Handwriting_3';
+    src: local('Handwriting_3'),
+        url(./fonts/Handwriting_3.otf) format('opentype');
 }
 
 @font-face {
-  font-family: 'Roboto_Medium';
-  src: local('Roboto-Medium'), url(./fonts/Roboto-Medium.ttf) format('truetype');
+    font-family: 'Roboto_Medium';
+    src: local('Roboto-Medium'),
+        url(./fonts/Roboto-Medium.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: 'Roboto_Light';
-  src: local('Roboto-Light'), url(./fonts/Roboto-Light.ttf) format('truetype');
+    font-family: 'Roboto_Light';
+    src: local('Roboto-Light'), url(./fonts/Roboto-Light.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: 'Roboto_Regular';
-  src: local('Roboto-Regular'), url(./fonts/Roboto-Regular.ttf) format('truetype');
+    font-family: 'Roboto_Regular';
+    src: local('Roboto-Regular'),
+        url(./fonts/Roboto-Regular.ttf) format('truetype');
 }
 
+html,
 body {
-  margin: 0;
-  height: 100%;
-  width: 100%;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    /* overflow-x: hidden; */
+}
+
+img {
+    max-width: 150px;
+}
+
+canvas {
+    width: 255px;
+    height: 255px;
+}
+
+@media only screen and (max-width: 1100px) {
+    /* For mobile phones: */
+    img {
+        max-width: 100px;
+        /* height: auto; */
+    }
+
+    canvas {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    /* For mobile phones: */
+    img {
+        max-width: 75px;
+        /* height: auto; */
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    /* For mobile phones: */
+    img {
+        max-width: 50px;
+        /* height: auto; */
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    /* For mobile phones: */
+    img {
+        max-width: 30px;
+        /* height: auto; */
+    }
 }

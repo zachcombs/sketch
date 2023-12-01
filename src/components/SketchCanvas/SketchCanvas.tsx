@@ -32,10 +32,10 @@ function SketchCanvas(drawing: { drawing: Array<Array<Array<number>>> }) {
         const canvas = canvasRef?.current;
         const context = canvas?.getContext('2d');
         if (canvas && context) {
-            canvas.width = 255;
-            canvas.height = 255;
-            canvas.style.width = '255px';
-            canvas.style.height = '255px';
+            // canvas.width = 255;
+            // canvas.height = 255;
+            // canvas.style.width = '255px';
+            // canvas.style.height = '255px';
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.lineCap = 'round';
             context.strokeStyle = 'black';

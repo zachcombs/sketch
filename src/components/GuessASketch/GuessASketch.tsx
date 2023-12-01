@@ -6,9 +6,10 @@ import GameBoard from '../GameBoard/GameBoard';
 import CreditsEmblem from '../CreditsEmblem/CreditsEmblem';
 import SplashScreen from '../SplashScreen/SplashScreen';
 import GameOver from '../GameOver/GameOver';
-import { fontifyWord } from '../../utils/Fontify';
+// import { fontifyWord } from '../../utils/Fontify';
 import { useCookies } from 'react-cookie';
 import { Drawing } from '../../utils/useGetDrawing';
+import { fontifyWord } from '../../utils/Fontify';
 
 function GuessASketch() {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -34,7 +35,7 @@ function GuessASketch() {
                         alignItems='center'
                         container
                         sx={{ height: '100%' }}
-                        alignContent='space-between'
+                        alignContent='center'
                     >
                         <Grid
                             container
@@ -42,10 +43,15 @@ function GuessASketch() {
                             flexDirection='column'
                             spacing={2}
                         >
-                            <Grid item>
+                            <Grid item xs={12}>
                                 <SplashScreen />
                             </Grid>
-                            <Grid item display='flex' justifyContent='center'>
+                            <Grid
+                                item
+                                xs={12}
+                                display='flex'
+                                justifyContent='center'
+                            >
                                 <SketchButton
                                     text='Play'
                                     fontSize={32}
@@ -53,23 +59,24 @@ function GuessASketch() {
                                 />
                             </Grid>
                         </Grid>
-                        <Grid container item p={2} xs={4}>
+                    </Grid>
+                    <Grid container alignItems={'flex-end'}>
+                        <Grid item p={2} xs={3}>
                             <CreditsEmblem />
                         </Grid>
-                        {cookies.score > 0 && (
-                            <Grid
-                                container
-                                item
-                                p={2}
-                                xs={4}
-                                justifyContent='center'
-                            >
-                                {fontifyWord(
-                                    `Your High Score: ${cookies.score}`,
-                                    32
-                                )}
-                            </Grid>
-                        )}
+                        <Grid item p={2} xs={6}>
+                            {cookies.score > 0 && (
+                                <Box display='flex' justifyContent={'center'}>
+                                    {fontifyWord(
+                                        `Your High Score: ${cookies.score}`,
+                                        {
+                                            variant: 'body2',
+                                        }
+                                    )}
+                                </Box>
+                            )}
+                        </Grid>
+                        <Grid item xs={3} />
                     </Grid>
                 </>
             ) : (

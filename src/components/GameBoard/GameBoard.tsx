@@ -58,7 +58,9 @@ function GameBoard({
     }, [drawingPopulated, setDrawingData, setIsLoading]);
 
     const ScoreCard = () => (
-        <Box display='flex'>{fontifyWord(`Score: ${currentScore}`, 48)}</Box>
+        <Box display='flex'>
+            {fontifyWord(`Score: ${currentScore}`, { variant: 'body1' })}
+        </Box>
     );
 
     return (
@@ -139,7 +141,7 @@ function GameBoard({
                                                         }
                                                     />
                                                 </Box>
-                                                <Box pt={2}>
+                                                <Box pt={2} display='flex'>
                                                     <AnswerTextField
                                                         correctAnswer={
                                                             drawingData?.word
@@ -166,7 +168,9 @@ function GameBoard({
                     justifyContent='center'
                     flexDirection='column'
                 >
-                    {fontifyWord('There was an error fetching the sketch!', 48)}
+                    {fontifyWord('There was an error fetching the sketch!', {
+                        variant: 'body1',
+                    })}
 
                     <Typography
                         pt={2}
