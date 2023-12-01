@@ -4,24 +4,43 @@ function SplashScreen() {
     const theme = useTheme();
 
     return (
-        <Box display='flex' flexDirection='column' alignItems='center'>
-            <Box display='flex' p={2} width={'700px'} textAlign={'center'}>
-                <Typography fontFamily='Handwriting_2' fontSize={48}>
+        <Box
+            display='flex'
+            flexDirection='column'
+            // alignItems='center'
+            // sx={{ width: '100vh' }}
+        >
+            <Box
+                display='flex'
+                p={2}
+                // width={'700px'}
+                textAlign={'center'}
+                justifyContent={'center'}
+            >
+                <Typography fontFamily='Handwriting_2' variant='body1'>
                     Can you guess drawing created from people around the world?
                 </Typography>
             </Box>
 
             <Box
                 display='flex'
-                flexDirection='column'
-                sx={{ width: '500px' }}
-                textAlign='center'
                 p={2}
+                // width={'700px'}
+                textAlign={'center'}
+                justifyContent={'center'}
             >
-                <Typography fontFamily='Roboto_Regular' fontSize={24}>
+                <Typography fontFamily='Roboto_Regular' variant='body2'>
                     Featuring drawings from
                 </Typography>
-                <Typography fontFamily='Roboto_Regular' fontSize={24}>
+            </Box>
+            <Box
+                display='flex'
+                p={2}
+                // width={'700px'}
+                textAlign={'center'}
+                justifyContent={'center'}
+            >
+                <Typography fontFamily='Roboto_Regular' variant='subtitle1'>
                     <a
                         href='https://github.com/googlecreativelab/quickdraw-dataset'
                         target='_blank'

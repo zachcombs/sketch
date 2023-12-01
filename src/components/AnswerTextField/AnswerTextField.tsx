@@ -54,13 +54,13 @@ function AnswerTextField({
         }
         if (char === '-') {
             return (
-                <Box p={1} sx={{ width: 50, height: 50 }}>
+                <Box p={1}>
                     <Typography
                         fontFamily={'Roboto_Regular'}
-                        fontSize={48}
+                        // fontSize={48}
                         textAlign={'center'}
-                        width={50}
-                        height={50}
+                        // width={50}
+                        // height={50}
                     >
                         {' '}
                         -
@@ -78,7 +78,7 @@ function AnswerTextField({
          * than anticipated
          */
         return (
-            <Box p={1}>
+            <Box p={1} display='flex'>
                 <TextField
                     inputRef={(ref) => (textfieldRef.current[index] = ref)}
                     key={`answer-textfield-${index}`}
@@ -152,7 +152,11 @@ function AnswerTextField({
         );
     });
 
-    return <Box display='flex'>{answerLetterMap}</Box>;
+    return (
+        <Box display='flex' flexWrap={'wrap'}>
+            {answerLetterMap}
+        </Box>
+    );
 }
 
 export default AnswerTextField;

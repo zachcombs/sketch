@@ -11,19 +11,28 @@ function CreditsEmblem() {
             <Box display='flex'>
                 <Box
                     display='flex'
-                    sx={{ width: '100px', color: 'grey' }}
-                    // textAlign='center'
+                    sx={{ color: 'grey' }}
+                    textAlign='center'
                     alignItems='center'
                 >
-                    <Typography fontFamily='Roboto_Regular' fontSize={12}>
+                    <Typography
+                        fontFamily='Roboto_Regular'
+                        variant='subtitle2'
+                        style={{
+                            maxWidth: '200px',
+                        }}
+                    >
                         Inspiration and data from Google's
                     </Typography>
                 </Box>
                 <img
-                    style={{ filter: 'grayscale(100%)' }}
+                    style={{
+                        // maxWidth: '100%',
+                        filter: 'grayscale(100%)',
+                    }}
                     src={quickDrawSprite}
                     alt='Quick, Draw!'
-                    width='100px'
+                    // height={'auto'}
                 />
             </Box>
         </a>
