@@ -2,7 +2,7 @@ import { Box, LinearProgress, useTheme } from '@mui/material';
 import { Dispatch, useEffect, useState } from 'react';
 
 const MIN = 0;
-const MAX = 100000;
+const MAX = 100;
 
 function Countdown({ setGameOver }: { setGameOver: Dispatch<boolean> }) {
     const theme = useTheme();
