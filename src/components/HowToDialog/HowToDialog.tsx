@@ -43,14 +43,18 @@ function HowToDialog({ open, handleModalClose }: HowToDialogProps) {
             onClose={handleModalClose}
             TransitionComponent={Transition}
         >
-            <DialogTitle display='flex' alignItems='center'>
+            <DialogTitle
+                display='flex'
+                alignItems='center'
+                justifyContent={'space-between'}
+            >
                 {fontifyWord('How to Play Guess-A-Sketch')}
                 <IconButton onClick={handleModalClose}>
                     <Close />
                 </IconButton>
             </DialogTitle>
             <DialogContent
-                sx={{ height: '30vh', fontFamily: 'Roboto_Regular' }}
+                sx={{ height: '50vh', fontFamily: 'Roboto_Regular' }}
             >
                 <Box
                     display='flex'

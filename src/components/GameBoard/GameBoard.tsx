@@ -175,7 +175,8 @@ function GameBoard({
                     <Typography
                         pt={2}
                         fontFamily='Roboto_Regular'
-                        fontSize={24}
+                        // fontSize={24}
+                        variant='body2'
                     >
                         Please retry and if problem continues please&nbsp;
                         <a
