@@ -66,7 +66,7 @@ function Header({
             <Grid item xs={4}>
                 <Box display='flex' justifyContent='flex-end'>
                     <Box
-                        pr={1}
+                        p={1}
                         sx={{
                             [theme.breakpoints.down(300)]: {
                                 pr: 0,
