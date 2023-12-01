@@ -6,7 +6,7 @@ Guess-A-Sketch is a web game that utilizes [Google's Quick, Draw! dataset](https
 The goal of the game is to get the highest score possible by guessing the drawings shown on screen. 
 
 ### How Can I Play?
-Play it for yourself [here](https://guess-a-sketch-6hes.onrender.com/)!
+Play it for yourself [here](https://www.guess-a-sketch.com/)!
 
 # How is was made
 This application was created using `React`, `TypeScript`, and `Vite`
