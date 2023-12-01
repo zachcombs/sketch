@@ -28,7 +28,7 @@ export default function SketchButton({
                 onClick={() => onClick()}
                 endIcon={endIcon}
             >
-                {fontifyWord(text, fontSize)}
+                {fontifyWord(text, undefined, fontSize)}
             </Button>
         </Box>
     );
